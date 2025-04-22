@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vietnam Food Map</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #map-container { position: relative; max-width: 700px; margin: auto; }
+    .city-marker {
+      position: absolute;
+      background: red;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      border: 2px solid white;
+    }
+    #info-box {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+      text-align: center;
+    }
+    #info-box img {
+      max-width: 300px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Vietnam Food Map</h2>
+  <div id="map-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Vietnam_location_map.svg/600px-Vietnam_location_map.svg.png" alt="Vietnam Map" style="width:100%;">
+    <div class="city-marker" style="top: 20%; left: 60%;" onclick="showInfo('hanoi')" title="Ha Noi"></div>
+    <div class="city-marker" style="top: 60%; left: 65%;" onclick="showInfo('hue')" title="Hue"></div>
+    <div class="city-marker" style="top: 85%; left: 55%;" onclick="showInfo('saigon')" title="Sai Gon"></div>
+  </div>
+
+  <div id="info-box"></div>
+
+  <script>
+    const foodData = {
+      hanoi: {
+        name: "Phở Hà Nội",
+        description: "Phở is a famous Vietnamese noodle soup from Hanoi, known for its clear broth and aromatic spices.",
+        ingredients: "Rice noodles, beef/chicken, onion, ginger, cinnamon, fish sauce, herbs",
+        image: "https://upload.wikimedia.org/wikipedia/commons/3/39/Ph%E1%BB%9F_b%E1%BB%8F%2C_B%E1%BB%91n_Ph%E1%BB%91%2C_H%C3%A0_N%E1%BB%99i.jpg"
+      },
+      hue: {
+        name: "Bún bò Huế",
+        description: "Bún bò Huế is a spicy beef noodle soup from Huế with rich flavors and lemongrass aroma.",
+        ingredients: "Beef, pork, lemongrass, shrimp paste, chili oil, rice noodles",
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Bun_Bo_Hue_-_spicy_beef_noodle_soup.jpg"
+      },
+      saigon: {
+        name: "Cơm tấm Sài Gòn",
+        description: "Cơm tấm is a southern Vietnamese dish made from broken rice served with grilled pork and various sides.",
+        ingredients: "Broken rice, grilled pork, egg, pickles, fish sauce, scallion oil",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e1/C%C6%A1m_t%E1%BA%A5m_S%C3%A0i_G%C3%B2n.jpg"
+      }
+    };
+
+    function showInfo(city) {
+      const food = foodData[city];
+      const box = document.getElementById("info-box");
+      box.style.display = "block";
+      box.innerHTML = `
+        <h3>${food.name}</h3>
+        <p><strong>Description:</strong> ${food.description}</p>
+        <p><strong>Ingredients:</strong> ${food.ingredients}</p>
+        <img src="${food.image}" alt="${food.name}">
+      `;
+    }
+  </script>
+</body>
+</html>
